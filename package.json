@@ -1,0 +1,24 @@
+{
+  "name": "adonia-megakonzert-checkin",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/esdominikb/adonia-megakonzert-checkin.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/esdominikb/adonia-megakonzert-checkin/issues"
+  },
+  "homepage": "https://github.com/esdominikb/adonia-megakonzert-checkin#readme",
+  "devDependencies": {
+    "express": "^4.13.4",
+    "grunt": "^1.0.1",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "load-grunt-tasks": "^3.5.0"
+  }
+}
