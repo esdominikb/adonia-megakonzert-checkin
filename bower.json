@@ -1,0 +1,16 @@
+{
+  "name": "adonia-megakonzert-checkin",
+  "description": "",
+  "homepage": "https://github.com/esdominikb/adonia-megakonzert-checkin",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.5"
+  }
+}
