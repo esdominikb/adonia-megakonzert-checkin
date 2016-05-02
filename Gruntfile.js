@@ -6,6 +6,14 @@ module.exports = function (grunt) {
             www: ['www']
         },
         copy: {
+            assets: {
+                files: [{
+                    cwd: 'bower_components',
+                    expand: true,
+                    src: ['**/*'],
+                    dest: 'www/.libs/'
+                }]
+            },
             scripts: {
                 files: [{
                     cwd: 'src',
@@ -24,18 +32,42 @@ module.exports = function (grunt) {
                 }]
             }
         },
+        wiredep: {
+            bower: {
+                options:{
+                    directory: 'www/.libs/'
+                },
+                src: ['www/index.html']
+            }
+        },
+        sass: {
+            dist: {
+                options: {
+                    style: 'compact',
+                    compass: true
+                },
+                files: {
+                    'www/css/styles.css': 'src/styles/styles.scss'
+                }
+            }
+        },
         watch: {
             scripts: {
                 files: ['src/scripts/**/*'],
-                tasks: ['copy:scripts']
+                tasks: ['newer:copy:scripts']
+            },
+            styles: {
+                files: ['src/styles/**/*'],
+                tasks: ['sass']
             },
             partials: {
-                files: ['src/partials/**/*', 'scr/index.html'],
-                tasks: ['copy:partials']
+                files: ['src/partials/**/*', 'src/index.html'],
+                tasks: ['newer:copy:partials', 'wiredep']
             }
         }
     });
 
 
-    grunt.registerTask('default', ['clean', 'copy', 'watch']);
+    grunt.registerTask('default', ['clean', 'newer:copy', 'sass', 'wiredep', 'watch']);
+
 };

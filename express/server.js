@@ -3,8 +3,8 @@ var serveIndex = require('serve-index');
 var app = express();
 
 // Serve URLs like /ftp/thing as public/ftp/thing
-app.use('/', serveIndex('src/', {'icons': true}));
-app.use(express.static('src/'));
+app.use('/', serveIndex('www/', {'icons': true}));
+app.use(express.static('www/'));
 
 app.listen(1339, function(){
     console.log('http://localhost:1339');
