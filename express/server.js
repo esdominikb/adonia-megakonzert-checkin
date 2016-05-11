@@ -7,5 +7,5 @@ app.use('/', serveIndex('www/', {'icons': true}));
 app.use(express.static('www/'));
 
 app.listen(1339, function(){
-    console.log('http://localhost:1339');
+    console.log('run http://localhost:1339');
 });
