@@ -1,16 +1,33 @@
-<html>
+<html ng-app="app">
     <head>
         <title>Adonia Megakonzert</title>
         <link rel="stylesheet" href="css/styles.css">
+        <script src=".libs/angular/angular.min.js"></script>
+        <script src="scripts/modules/app.module.js"></script>
+
     </head>
     <body>
+        {{textInput}}
+
+        <input ng-model="textInput">
         <h1>Test 2</h1>
+        {{textInput}}
+        <label>CB 1<input type="checkbox" ng-model="checkboxModel.cb1" name="cb1" value="cb1"></label>
+        <label>CB 2<input type="checkbox" ng-model="checkboxModel.cb2" name="cb2" value="cb2"></label>
+
+        <ul>
+            <li ng-repeat="item in items"  ng-if="item.id.indexOf(textInput) >= 0">{{item.id}} | {{item.value}}</li>
+        </ul>
+
 
         <h2>New Headline</h2>
+        {{checkboxModel}}
 
         <p>Develop</p>
 
         <!-- bower:js -->
         <!-- endbower -->
+
+        <script src="scripts/app.min.js"></script>
     </body>
 </html>

@@ -14,15 +14,6 @@ module.exports = function (grunt) {
                     dest: 'www/.libs/'
                 }]
             },
-            scripts: {
-                files: [{
-                    cwd: 'src',
-                    expand: true,
-                    src: ['scripts/**/*'],
-                    dest: 'www/'
-                    //filter: 'isFile'
-                }]
-            },
             partials: {
                 files:[{
                     cwd:'src',
@@ -54,7 +45,7 @@ module.exports = function (grunt) {
         watch: {
             scripts: {
                 files: ['src/scripts/**/*'],
-                tasks: ['newer:copy:scripts']
+                tasks: ['newer:uglify']
             },
             styles: {
                 files: ['src/styles/**/*'],
@@ -64,10 +55,34 @@ module.exports = function (grunt) {
                 files: ['src/partials/**/*', 'src/index.html'],
                 tasks: ['newer:copy:partials', 'wiredep']
             }
+        },
+        uglify: {
+            options: {
+                sourceMapIncludeSources: true
+            },
+            development: {
+                options: {
+                    mangle: false,
+                    sourceMap: true,
+                    compress: false
+                },
+                files: {
+                    'www/scripts/app.min.js': [
+                        'src/scripts/modules/app.module.js',
+                        'src/scripts/modules/**/*.module.js',
+
+                        'src/scripts/services/**/*.js',
+                        'src/scripts/controller/**/*.js',
+                        'src/scripts/directives/**/*.js',
+                        'src/scripts/**/*.js'
+                    ]
+                }
+            }
         }
     });
 
 
-    grunt.registerTask('default', ['clean', 'newer:copy', 'sass', 'wiredep', 'watch']);
+    grunt.registerTask('default', ['clean', 'newer:copy', 'newer:uglify', 'sass', 'wiredep']);
+    grunt.registerTask('run', ['default', 'watch']);
 
 };
